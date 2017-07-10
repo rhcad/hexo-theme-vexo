@@ -1,9 +1,8 @@
 .project-app
   max-width: 1020px
-  min-width: 300px
-  padding: 1em 0
+
 .card-container
-  margin: 30px auto
+  margin: 0 auto
   display: -webkit-flex
   display: flex
   justify-content: space-between
@@ -12,6 +11,8 @@
     width: 660px
   @media screen and (max-width: 660px)
     width: 320px
+  @media screen and (max-width: 612px)
+    width: 306px
   .project-card
     width: 320px
     height: 160px
@@ -25,8 +26,9 @@
       border: 1px solid color-border
       border-radius: 4px
       color: color-dark
+      background-color: color-white
       transition: border-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out
-      &:hover
+      .desktop &:hover
         border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.15)
         box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.1)
       .card-header

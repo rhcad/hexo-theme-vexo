@@ -33,6 +33,9 @@
       "NProgress"
     ],
     "ignore": [
+      "source/_local/",
+      "source/js/device.js",
+      "source/js/resize.js",
       "source/js/gitment.js",
       "source/js/qrious.js"
     ]

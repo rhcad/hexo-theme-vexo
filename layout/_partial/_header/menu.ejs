@@ -1,0 +1,15 @@
+<% for (var name in menu) {
+  if (typeof menu[name] === 'string' && ['tags', 'categories'].indexOf(name) < 0) {
+    if (level > 0) { %>
+      <%- partial('menu-item', { menu: menu, name: name }) %>
+    <% } else { %>
+      <li class="menu-item">
+        <%- partial('menu-item', { menu: menu, name: name }) %>
+      </li>
+    <% }
+  } else if (menu[name] && typeof menu[name] === 'object') { %>
+    <li class="menu-item">
+      <%- partial('menu', { menu: menu[name], level: level + 1 }) %>
+    </li>
+  <% }
+} %>

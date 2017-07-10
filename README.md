@@ -2,7 +2,7 @@
 
 > Vexo is a Hexo theme inspired by [Vue.js](https://cn.vuejs.org) official website.
 
-[![Build Status](https://travis-ci.org/yanm1ng/hexo-theme-vexo.svg?branch=master)](https://travis-ci.org/yanm1ng/hexo-theme-vexo)
+[![Build Status](https://travis-ci.org/rhcad/hexo-theme-vexo.svg?branch=master)](https://travis-ci.org/rhcad/hexo-theme-vexo)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 
@@ -12,17 +12,17 @@
 
 ## Demo
 
-[Live Example](https://yanm1ng.github.io/)
+[Live Example](https://rhcad.github.io/)
 
 ## Features
 
 * Fully Responsive
 * Baidu Analytics
-* Gitment
 * Reward
 * Share Qrcode
 * SEO
 * Immersive Status Bar
+* Internal Search Engine
 
 ## Install
 
@@ -31,7 +31,7 @@
    ```
    cd your-hexo-folder
 
-   git clone https://github.com/yanm1ng/hexo-theme-vexo.git themes/vexo
+   git clone https://github.com/rhcad/hexo-theme-vexo.git themes/vexo
 
    cp themes/vexo/_source/* source/
    ```
@@ -107,22 +107,6 @@ tags:
 * Fixed HighLight code line-number bug
 * Adjust home post display problem
 * Thanks @ky0ncheng issue
-
-## Comment
-
-Vexo use [Gitment](https://github.com/imsun/gitment) as the third party discussion system.
-
-You can easily complete your comment configuration by just adding your settings into `_config.yml`
-
-```
-# Gitment
-gitment_owner: yanm1ng
-gitment_repo: yanm1ng.github.io
-gitment_oauth_id: 
-gitment_oauth_secret: 
-```
-
-How to use Gitment ? [See](https://imsun.github.io/gitment/)
 
 ## Reward
 

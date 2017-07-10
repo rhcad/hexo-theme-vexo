@@ -1,0 +1,9 @@
+<p class="article-date">
+  <span>
+    <i class="fa fa-calendar" aria-hidden="true"></i>
+    <%- date(post.date, "YYYY-MM-DD") %>
+  </span>
+  <% if (post.tags && post.tags.length) { %>
+  <%- partial('tag', { tags: post.tags }) %>
+  <% } %>
+</p>

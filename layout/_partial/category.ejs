@@ -1,0 +1,9 @@
+<% if (categories && categories.length) { %>
+<i class="fa fa-folder-o" aria-hidden="true"></i>
+<%- list_categories(categories, {
+  show_count: false,
+  'class': 'category',
+  style: 'none',
+  separator: '»'
+}) %>
+<% } %>

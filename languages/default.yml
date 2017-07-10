@@ -1,0 +1,20 @@
+description: Blog based on Hexo and vexo theme.
+prev: Prev
+next: Next
+excerpt_link: Read more
+tags_page: Tag Archives
+categories_page: Category Archives
+tag_page: 'Tag Archives for "%s"'
+category_page: 'Category Archives for "%s"'
+archives_page: Article Archive
+projects_page: Open Source Projects
+share_qrcode: Scan QR code to share this article.
+search_placeholder: Searching...
+
+menu:
+ home: Home
+ tags: Tags
+ categories: Categories
+ archives: Archives
+ projects: Projects
+ about: About

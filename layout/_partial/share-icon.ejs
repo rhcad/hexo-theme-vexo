@@ -1,0 +1,8 @@
+<% if (prefix && user) { %>
+<a class="icon-<%- name %>" href="<%- prefix + user %>" <%- /^http/.test(prefix) ? 'target="_blank"' : '' %> >
+  <span class="fa-stack fa-lg">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa <%= icon[0] != '-' ? 'fa-' + icon : '' %> fa-stack-1x fa-inverse"><%= icon[0] != '-' ? '' : icon.slice(1) %></i>
+  </span>
+</a>
+<% } %>

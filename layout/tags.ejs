@@ -1,31 +1,27 @@
 <div id="article-banner">
-  <h2>Tags</h2>
-  <p class="post-date">标签检索</p>
+  <h2><%= __('tags_page') %></h2>
 </div>
+<div class="app-body-wrapper">
 <main class="app-body">
+  <%
+    var counts = [], types = {};
+
+    site.tags.forEach(tag => {
+      var n = tag.posts.length;
+      if (counts.indexOf(n) < 0) {
+        counts.push(n);
+      }
+    });
+    counts.sort((a, b) => a - b);
+    counts.forEach((n, index) => { types[n] = Math.round(index / counts.length * 3) });
+  %>
   <div id="tag-cloud">
-    <% site.tags.map(function(tag, index) { %>
-      <a class="tag<%= Math.round(Math.random() * 3) %>" data-name="tag-<%= index %>"><%= tag.name %></a>
+    <% site.tags.forEach(tag => { %>
+    <a class="tag<%= types[tag.posts.length] %>" href="<%= url_for('tags/' + tag.name) %>">
+      <i class="fa fa-tag" aria-hidden="true"></i>
+      <%= tag.name %> <small>(<%= tag.posts.length %>)</small>
+    </a>
     <% }) %>
   </div>
-  <% site.tags.map(function(tag, index){ %>
-    <div class="tag-list">
-      <h3 class="tag-name" id="tag-<%= index %>"><%= tag.name %></h3>
-      <% tag.posts.map(function(post) { %>
-        <ul class="tag-preview">
-          <li>
-            <a href="<%- config.root %><%- post.path %>"><%- post.title || "Untitled" %></a>
-          </li>
-        </ul>
-        <% }) %>
-    </div>
-    <% }) %>
 </main>
-
-<script>
-  (function () {
-    var url = '<%= config.url %>/<%= page.path %>';
-    $('#article-banner').geopattern(url);
-    $('.header').removeClass('fixed-header')
-  })();
-</script>
+</div>

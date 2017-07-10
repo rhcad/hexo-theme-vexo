@@ -10,6 +10,10 @@
 ::-webkit-scrollbar
   display: none
 
+html
+  height: 100%
+  margin: 0
+
 body
   font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif
   -webkit-font-smoothing: antialiased
@@ -19,6 +23,7 @@ body
   height: 100%
   margin: 0
   color: color-dark
+  background-color: color-background
   font-size: 16px
   @media m-mobile
     font-size: 15px
@@ -37,15 +42,26 @@ p
 pre
   overflow-x: auto
 
+.app-body-wrapper
+  padding: 0.4em
+
 .app-body
   padding: 1em
-  margin: 0 auto
-  height: 100%
-  max-width: 750px
+  margin: 0.5em auto
+  max-width: 900px
   position: relative
   opacity: 0
   transform: translateY(-20px)
   transition: all 0.4s
+  .post-article > :last-child
+    margin-bottom: 0
+  &:not(.home-page):not(.project-app)
+    background-color: color-white
+    border-radius: 4px
+    box-shadow: 1px 1px 2px 2px color-shadow
+  @media m-mobile
+    max-width: 100%
+    padding: 0.5em
 
 .hljs
   background: none !important
@@ -57,7 +73,7 @@ pre
       margin-right: 10px
       font-weight: 600
 
-.tag-code
+.tag-code, .category-link
   font-family: 'Roboto Mono', Monaco, courier, monospace
   font-size: .8em
   display: inline-block
@@ -69,23 +85,30 @@ pre
   white-space: nowrap
 
 .article-card
-  padding-bottom: 20px
-  &:first-child
-    margin-top: 80px
+  padding: 20px
+  background-color: color-white
+  border-radius: 4px
+  box-shadow: 1px 1px 2px 2px color-shadow
+  & + &
+    margin-top: 30px
+  @media m-mobile
+    padding: 12px
 
 h2.article-head
   font-size: 1.6em
-  margin-bottom: 0
+  margin: 0
 
 .article-head > a
   color: color-dark
-  &:hover
+  .desktop &:hover
     border-bottom: 2px solid color-primary
 
 .article-date
   color: color-gray
   margin: 10px 0
   font-size: 0.9em
+  span
+    margin-right: 8px
 
 .article-summary
   margin: 10px 0
@@ -97,15 +120,16 @@ h2.article-head
 #article-banner
   width: 100%
   box-sizing: border-box
+  opacity: .75
   top: 0
   left: 0
-  padding: 80px 20px 25px 20px
+  padding: 60px 20px 15px 20px
   text-align: center
   position: relative
   @media m-mobile
-    padding: 80px 10px 25px 10px
-  h2
-    margin: .4em 0
+    padding: 60px 10px 10px 10px
+  h2, h3
+    margin: 0 0 0.4em
     font-size: 2.2em
     color: color-white
     text-shadow: 0 0 40px color-dark
@@ -113,43 +137,60 @@ h2.article-head
     transform: translateY(-20px)
     transition: all 0.4s
     @media m-mobile
-      font-size: 2em
+      font-size: 1.6em
   .post-date
-    margin: 10px 0 20px 0
+    margin: 10px 0
     color: color-white
     opacity: 0
     transform: translateY(-20px)
     transition: all 0.4s
     transition-delay: 0.05s
-  .arrow-down
-    display: flex
-    width: 100%
-    justify-content: center
-    opacity: 0
-    transform: translateY(-20px)
-    transition: all 0.4s
-    transition-delay: 0.1s
-    a
-      z-index: 4
-      display: block
-      width: 25px
-      height: 25px
-      -webkit-transform: rotate(315deg)
-      transform: rotate(315deg)
-      -webkit-animation-name: shine
-      -webkit-animation-duration: 1.5s
-      -webkit-animation-iteration-count: infinite
-      animation-iteration-count: infinite
-      border-bottom: 1px solid color-white
-      border-left: 1px solid color-white
+    span
+      margin-right: 8px
+  h3
+    font-size: 1.8em
+    @media m-mobile
+      font-size: 1.4em
+  .article-date
+    color: color-white
+  .category-link
+    color: color-white
+    background-color: transparent
 
-.post-article
-  margin-top: 20px
-  @media m-mobile
-    margin-top: 0
+.category-list-count
+.tag-list-count
+.archive-list-count
+  padding-left: 5px
+  color: color-gray
+  font-size: 0.85em
+  &:before
+    content: "("
+  &:after
+    content: ")"
+
+.desktop .category-link:hover
+  text-decoration: underline
+.category-list
+  list-style: none
+  padding-left: 20px
+  a
+    line-height: 1.2em
+    font-size: 1.2em
+    margin-bottom: 8px
+    display: inline-block
+    color: color-dark
+    transition: background .5s
+    .desktop &:hover
+      color: color-gray
+  ul a
+    line-height: 1.05em
+    font-size: 1.05em
+  ul ul a
+    line-height: .9em
+    font-size: .9em
 
 .money-like
-  padding: 2em 0 3em
+  padding: 2em 0
   .reward-btn
     cursor: pointer
     font-size: 1.6em
@@ -175,8 +216,9 @@ h2.article-head
     height: 5.5em
     margin-left: -5.9em
     padding: 10px 15px
+    border: 1px solid color-border
     background: color-white
-    box-shadow: 0 0 0 1px color-border
+    box-shadow: 0 1px 1px 1px color-border
     border-radius: 4px
     span
       display: inline-block
@@ -213,11 +255,14 @@ h2.article-head
   text-align: center
   color: color-gray
   font-style: italic
+  span
+    word-break: keep-all
 
 .qrcode
-  padding-bottom: 30px
+  padding-bottom: 10px
   text-align: center
-  border-bottom: 1px dashed color-border
+  @media m-pad
+    display: none
   canvas
     width: 8em
     height: 8em
@@ -232,6 +277,9 @@ h2.article-head
   right: 0
   z-index: 1000
   transition: all 0.3s ease-in-out
+  text-align: center
+  color: red
+  line-height: 30
   .image-view-inner
     position: relative
   img
@@ -239,6 +287,7 @@ h2.article-head
     margin: 0 auto
     cursor: zoom-out
     transition: all 0.3s ease-in-out
+
 .wrap-active
   background-color: rgba(255, 255, 255, .9)
 
@@ -249,25 +298,19 @@ h2.article-head
   box-sizing: border-box
   right: 2em
   bottom: 45px
-  width: 40px
-  height: 40px
   padding: 5px
   background-color: color-primary
-  border-radius: 20px
-  transform: translate(80px, 0)
-  transition: all .3s ease
+  border-radius: 4px
+  transition: opacity .5s ease
   box-shadow: 0 0 3px 0 rgba(0,0,0,.12), 0 3px 3px 0 rgba(0,0,0,.24)
-
-.arrow-icon
-  background-image: url(arrow-url)
-  width: 30px
-  height: 30px
-  display: block
-  background-size: contain
+  i
+    font-size: 24px;
+    padding: 0 2px 4px;
 
 .opacity
-  opacity: 1
-  transform: translate(0, 0)
+  opacity: 0.25
+  .desktop &:hover
+    opacity: 1
 
 @keyframes shine
   0%, 100%
@@ -285,3 +328,4 @@ h2.article-head
 @import "_partial/archive"
 @import "_partial/about"
 @import "_partial/project"
+@import "_partial/search"

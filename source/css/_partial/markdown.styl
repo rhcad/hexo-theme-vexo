@@ -8,6 +8,7 @@
       font-size: 12px
     .line
       margin: 2px 0
+      height: 17px
   p
     line-height: 1.6em
     code
@@ -17,6 +18,8 @@
       margin: 0 2px
       border-radius: 2px
       white-space: nowrap
+  p + p
+    margin-top: 0.5em
   h1
     font-size: 1.8em
   h2
@@ -54,12 +57,14 @@
     max-width: 100%
     display: block
     margin: 20px auto
-    cursor: zoom-in
+  img[src$='error.png']
+    border: 1px dashed color-border
   figure
-    background: color-background
-    padding: 0 10px
+    padding: 0 10px 0 0
+    border: 1px solid color-background
     border-radius: 2px
-    margin: 20px 0
+    background-color: color-background
+    margin: 10px 0
     overflow: auto
     position: relative
     &:after
@@ -96,3 +101,15 @@
     border: none
     border-bottom: 1px dashed color-border
     margin: 30px 0
+
+.hljs
+  margin-top: 0
+  margin-bottom: 0
+
+.gutter > .hljs
+  user-select: none
+  color: color-gray
+  border-right: 1px solid color-border
+
+.MathJax
+  outline: 0

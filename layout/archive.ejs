@@ -1,27 +1,37 @@
 <div id="article-banner">
-  <h2>Archives</h2>
-  <p class="post-date">文章归档</p>
+  <h2><%= __('archives_page') %></h2>
 </div>
+<div class="app-body-wrapper">
 <main class="app-body" id="archives">
-  <% let years = {}; %>
-  <%
-    site.posts.each(post => {
-      const y = post.date.year();
+<%
+  let years = {}, all = !is_year() && !is_month();
+  site.posts.each(function (post) {
+    const y = post.date.year();
+    const m = post.date.month() + 1;
+    if ((!page.year || page.year == y) && (!page.month || page.month == m)) {
       if (!years[y]) {
-        years[y] = [];
+        years[y] = {};
       }
-      years[y].push(post);
-    })
-  %>
-  <% for (let year of Object.keys(years).reverse()) { %>
-    <%- partial('_partial/archive', { year: year, posts: years[year].reverse() }) %>
-  <% } %>
+      if (!years[y][m]) {
+        years[y][m] = [];
+      }
+      years[y][m].push(post);
+    }
+  });
+  for (let year of Object.keys(years).reverse()) {
+%>
+  <section class="time-section">
+    <h2 class="section-year">
+      <a href="<%= url_for('archives/' + year) %>">
+        <%= year %>
+        <small>(<%= site.posts.filter(p => p.date.year() == year).length %>)</small>
+      </a>
+    </h2>
+  </section>
+  <% for (let month of Object.keys(years[year]).reverse()) {
+    posts = years[year][month].reverse(); %>
+    <%- partial('_partial/archive', { posts: posts }) %>
+  <% }
+  } %>
 </main>
-
-<script>
-  (function () {
-    var url = '<%= config.url %>/<%= page.path %>';
-    $('#article-banner').geopattern(url);
-    $('.header').removeClass('fixed-header');
-  })();
-</script>
+</div>

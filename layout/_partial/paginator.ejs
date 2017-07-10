@@ -1,0 +1,12 @@
+<% if (page.prev || page.next) { %>
+<div class="guide-pager">
+  <a <%- page.prev ? '' : 'class="unvisible"' %> href="<%- page.prev && url_for(page.prev.path) %>">
+    <span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+    <%= page.prev && page.prev.title %>
+  </a>
+  <a <%- page.next ? '' : 'class="unvisible"' %> href="<%- page.next && url_for(page.next.path) %>">
+    <%= page.next && page.next.title %>
+    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+  </a>
+</div>
+<% } %>

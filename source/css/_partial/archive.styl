@@ -8,11 +8,12 @@
     content: ''
     background-color:color-primary
     width: 4px
+    @media m-mobile
+      left: 22px
 .time-section
   padding-left: 30px
   position: relative
-  .section-year
-    cursor: pointer
+  .section-year, .section-month
     font-size: 1.8em
     margin-left: 10px
     &:before
@@ -25,6 +26,10 @@
       height: 12px
       border: 2px solid color-primary
       border-radius: 50%
+    small
+      color: color-gray
+  .section-month
+    font-size: 1.5em
   .section-list
     .section-list-item
       margin: 20px 0 20px 10px
@@ -38,14 +43,13 @@
         width: 10px
         height: 10px
         border-radius: 50%
-      .archive-title
-        color: color-dark
-        transition: all .3s ease
-        font-size: 1.1em
-        &:hover
-          color: color-primary
-          padding-left: 10px
-      .archive-date
-        color: color-gray
-        font-size: .9em
-        margin: 5px 0
+  a
+    color: color-dark
+    transition: all .3s ease
+    font-size: 1.1em
+    .desktop &:hover
+      color: color-primary
+  .archive-date
+    color: color-gray
+    font-size: .9em
+    margin: 5px 0

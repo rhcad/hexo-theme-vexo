@@ -1,23 +1,41 @@
+<%
+  let title = (page.title ? page.title + ' | ' : '') + config.title;
+  let description = page.description || config.description || __('description');
+  let cdnroot = config.local ? '/_local' : 'http://cdn.bootcss.com';
+  let min = config.local ? '.' : '.min.';
+%>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-  <meta name="description" content="<%= config.description || theme.description %>">
-  <meta name="keyword" content="<%= config.keyword || theme.keyword %>">
-  <title>
-    <% if (page.title){ %>
-      <%= page.title %> | <%= config.title %>
-    <% } else { %>
-      <%= config.title %>
-    <% } %>
-  </title>
-  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
-  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/<%= theme.highlight %>.min.css" rel="stylesheet">
+  <title><%= title %></title>
+  <meta name="description" content="<%= description %>">
+  <meta name="keyword" content="<%= page.tags && page.tags.map(t => t.name).join(', ') || config.keyword %>">
+
+  <link rel="canonical" href="<%= url.replace(/index.html$/, '') %>">
+  <link rel="icon" type="image/x-icon" href="<%- url_for('css/images/favicon.ico') %>">
+  <link rel="shortcut icon" type="image/x-icon" href="<%- url_for('css/images/favicon.ico') %>">
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="<%= title %>">
+  <meta property="og:description" content="<%= description %>">
+  <meta property="og:image" content="<%- url_for('css/images/logo.png') %>">
+
+  <!--[if IE]>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <![endif]-->
+
+  <% if (!config.local) { %><link rel="dns-prefetch" href="http://cdn.bootcss.com" /><% } %>
+  <link href="<%- cdnroot %>/font-awesome/4.7.0/css/font-awesome<%= min %>css" rel="stylesheet">
+  <link href="<%- cdnroot %>/nprogress/0.2.0/nprogress<%= min %>css" rel="stylesheet">
+  <link href="<%- cdnroot %>/highlight.js/9.12.0/styles/<%= theme.highlight %><%= min %>css" rel="stylesheet">
   <%- css('css/style') %>
-  <%- css('css/plugins/gitment.css') %>
-  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
-  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="<%- cdnroot %>/jquery/3.2.1/jquery<%= min %>js"></script>
+  <script src="<%- cdnroot %>/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="<%- cdnroot %>/nprogress/0.2.0/nprogress<%= min %>js"></script>
   <%- js('js/qrious') %>
-  <%- js('js/gitment') %>
+  <%- js('js/resize') %>
+  <%- partial('math', {position: 'head'}) %>
 </head>

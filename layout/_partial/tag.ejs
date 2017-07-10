@@ -1,3 +1,8 @@
-<% tags.each(function(tag) { %>
-  <span class="tag-code"><%= tag.name %></span>
-<% }) %>
+<% if (tags && tags.length) { %>
+  <i class="fa fa-tags" aria-hidden="true"></i>
+  <% tags.each(function(tag) { %>
+    <a class="tag-code" href="<%= url_for('tags/' + tag.name) %>">
+       <%= tag.name %>
+    </a>
+  <% }) %>
+<% } %>

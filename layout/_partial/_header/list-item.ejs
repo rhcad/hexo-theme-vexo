@@ -1,0 +1,32 @@
+<%
+let url = '/' + path.replace('index.html', '');
+let isActive = (name, o) => ((o || menu)[name] == '/' ? is_home() : url.indexOf((o || menu)[name]) >= 0);
+for (var name in menu) {
+  if (typeof menu[name] === 'string') { %>
+    <li class="list-item<%- isActive(name) ? ' active' : '' %>">
+      <a href="<%- url_for(menu[name]) %>" class="item-link">
+        <%- __('menu.' + name) %>
+        <% if (dropdown && name == 'categories') { %>
+          <small>(<%- site.categories.length %>)</small>
+        <% } %>
+        <% if (dropdown && name == 'tags') { %>
+          <small>(<%- site.tags.length %>)</small>
+        <% } %>
+        <% if (dropdown && name == 'archives') { %>
+        <small>(<%- site.posts.length %>)</small>
+        <% } %>
+      </a>
+    </li>
+  <% } else { %>
+    <% let activeDown = Object.keys(menu[name]).filter(n => isActive(n, menu[name]))[0] %>
+    <li class="list-item dropdown<%- activeDown ? ' active' : '' %>">
+      <a class="item-link">
+        <%- __('menu.' + (activeDown || name)) %>
+        <i class="fa fa-angle-down"></i>
+      </a>
+      <ul class="submenu">
+        <%- partial('list-item', { menu: menu[name], dropdown: true }) %>
+      </ul>
+    </li>
+  <% }
+} %>

@@ -1,21 +1,23 @@
-<main class="app-body">
+<div id="article-banner">
+  <h2><%- config.subtitle %></h2>
+  <p class="post-date"><%- config.description || __('description') %></p>
+</div>
+<main class="app-body home-page">
   <% page.posts.each(function(post) { %>
     <article class="article-card">
       <h2 class="article-head">
         <a href="<%- url_for(post.path) %>"><%- post.title %></a>
       </h2>
-      <p class="article-date"><%-date(post.date, "YYYY-MM-DD")%></p>
-      <% if (post.tags && post.tags.length) { %>
-        <%- partial('_partial/tag', { tags: post.tags }) %>
-      <% } %>
+      <%- partial('_partial/home-date', { post: post }) %>
       <div class="article-summary">
         <% if (post.excerpt) { %>
           <%- post.excerpt %>
         <% } else { %>
-          <%- truncate(strip_html(post.content), { length: 150, omission: ' ...' }) %>
+          <% let texts = truncate(strip_html(post.content), { length: 150, omission: ' ...' }).split('\n'); %>
+          <%- texts.map(t => '<p>' + t + '</p>').join('') %>
         <% } %>
       </div>
-      <a class="more" href="<%- url_for(post.path) %>"><%- theme.excerpt_link %></a>
+      <a class="more" href="<%- url_for(post.path) %>"><%- __('excerpt_link') %></a>
     </article>
   <% }) %>
 
@@ -23,4 +25,3 @@
     <%- partial('_partial/pager') %>
   <% } %>
 </main>
-

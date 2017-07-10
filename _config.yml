@@ -1,29 +1,33 @@
-author: yanm1ng # 作者
-description: yanm1ng's blog
-keyword: hexo-theme, vuejs
-
-excerpt_link: Read more
+language: zh-CN
+local: false
+reward: true
+qrcode: true
 
 menu:
- Home: /
- Tags: /tags/
- Archives: /archives/
- Projects: /project/
- About: /about/
+  home: /
+  archives:
+    categories: /categories/
+    tags: /tags/
+    archives: /archives/
+  projects: /project/
+  about: /about/
 
-# highlight
-highlight:
-  tomorrow
+# highlight style
+highlight: github
 
-# Gitment
-gitment_owner: yanm1ng
-gitment_repo: yanm1ng.github.io
-gitment_oauth_id: 0f87e490e00ee3fd87ef
-gitment_oauth_secret: 4a9d2b148e7971c2201ad12131ce8bf8159ccd2e
+# Local search
+local_search:
+  enable: true
+  # if auto, trigger search by changing input
+  # if manual, trigger search by pressing enter key or search button
+  trigger: auto
+  # show top n results per article, show all results by setting to -1
+  top_n_per_article: 1
 
-baidu_id: 
-
-about: 
-  banner: http://file.muyutech.com/about.jpg
-  avatar: https://avatars3.githubusercontent.com/u/16443628?v=3&s=460
-  description: The end is always near.
+about:
+  avatar: https://avatars1.githubusercontent.com/u/558922?v=3&s=460
+  description: A researcher of vector graphics and dynamic geometry techniques.
+  email:
+  weibo_username: rhcad
+  github_username: rhcad
+  #zhihu_username:

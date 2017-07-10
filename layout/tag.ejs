@@ -1,0 +1,17 @@
+<div id="article-banner">
+  <h2><%= _p('tag_page', page.tag) %></h2>
+</div>
+<div class="app-body-wrapper">
+<main class="app-body">
+  <div class="tag-list">
+    <% page.posts.map(function(post) { %>
+    <ul class="tag-preview">
+      <li>
+        <span class="tag-time"><%- date(post.date, "YYYY-MM-DD") %></span>
+        <a href="<%- url_for(post.path) %>"><%- post.title || "Untitled" %></a>
+      </li>
+    </ul>
+    <% }) %>
+  </div>
+</main>
+</div>

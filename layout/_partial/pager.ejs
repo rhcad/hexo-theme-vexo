@@ -1,12 +1,24 @@
-<div class="guide-pager">
+<nav class="guide-pager">
   <% if (page.prev) { %>
-    <a href="<%- url_for(page.prev_link) %>"><span class="page-arrow">← </span>Prev</a>
+    <a href="<%- url_for(page.prev_link) %>">
+      <span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+      <%= __('prev') %>
+    </a>
   <% } else { %>
-    <a class="unvisible" href="<%- url_for(page.prev_link) %>"><span class="page-arrow">←</span> Prev</a>
+    <a class="unvisible" href="<%- url_for(page.prev_link) %>">
+      <span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+      <%= __('prev') %>
+    </a>
   <% } %>
   <% if (page.next) { %>
-    <a href="<%- url_for(page.next_link) %>">Next<span class="page-arrow"> →</span></a>
+    <a href="<%- url_for(page.next_link) %>">
+      <%= __('next') %>
+      <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+    </a>
   <% } else { %>
-    <a class="unvisible" href="<%- url_for(page.next_link) %>">Next <span class="page-arrow">→</span></a>
+    <a class="unvisible" href="<%- url_for(page.next_link) %>">
+      <%= __('next') %>
+      <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+    </a>
   <% } %>
-</div>
+</nav>

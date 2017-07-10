@@ -1,0 +1,49 @@
+<% let cdnroot = config.local ? '/_local' : 'http://cdn.bootcss.com', min = config.local ? '.' : '.min.'; %>
+<% if (!config.math || !/\$|\{% math %\}|\\\(|\\\[/.test(page.raw)) {}
+  else if (config.math.engine == 'mathjax' && position == 'head') { %>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    jax: ['input/TeX', 'output/HTML-CSS'],
+    extensions: ['tex2jax.js'],
+    tex2jax: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [ ['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+      ignoreClass: 'tex2jax_ignore'
+    },
+    TeX: {
+      noUndefined: {
+        attributes: { mathcolor: 'red', mathbackground: '#fee', mathsize: '90%' }
+      },
+      equationNumbers: {
+        autoNumber: ["AMS"],
+        useLabelIds: true
+      }
+    },
+    messageStyle: 'none',
+    'HTML-CSS': {
+      preferredFont: 'TeX',
+      availableFonts: ['STIX', 'TeX'],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50),
+      showMathMenu: false,
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    }
+  });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="<%- cdnroot %>/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<% } else if (config.math.engine == 'katex' && position == 'head') { %>
+  <link href="<%- cdnroot %>/KaTeX/0.7.1/katex<%= min %>css" rel="stylesheet">
+<% } else if (config.math.engine == 'katex' && position == 'script') { %>
+  <script src="<%- cdnroot %>/KaTeX/0.7.1/contrib/auto-render.min.js"></script>
+  <script src="<%- cdnroot %>/KaTeX/0.7.1/katex.min.js"></script>
+  <script>renderMathInElement($('.app-body')[0]);</script>
+<% } %>

@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= config.language || theme.language %>">
   <%- partial('_partial/head') %>
   <body>
     <%- partial('_partial/header') %>
     <%- body %>
     <%- partial('_partial/top') %>
     <%- partial('_partial/footer') %>
+    <%- partial('_partial/search') %>
   </body>
 </html>
+
+<script>
+  <% if (!page.progress) { %>
+  window.onload = function() {
+    setTimeout(function() {
+      NProgress.done();
+    }, 200);
+  };<% } %>
+
+  (function () {
+    var footer  = $('.app-footer');
+    var footerH = footer[0].offsetHeight + 24;
+    var body = $('main');
+    var resize = function(e) {
+      var windowH = $(window).height();
+      var bodyH = body.offset().top + body[0].offsetHeight + footerH;
+      if (bodyH < windowH) {
+        footer.addClass('fixed-footer');
+      } else {
+        footer.removeClass('fixed-footer');
+      }
+    };
+
+    body.resize(resize);
+    $(window).bind('orientationchange', resize);
+    resize();
+
+    <% if (page.geopattern !== false) { %>
+    $('#article-banner').geopattern('<%- page.path %>', {color: '<%- is_home() ? '#4078c0' : '#1d9f75' %>'});
+    <% } %>
+  })();
+</script>
+<%- partial('_partial/localsearch') %>
