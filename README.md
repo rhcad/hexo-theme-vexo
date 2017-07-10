@@ -18,6 +18,7 @@
 
 * Fully Responsive
 * Baidu Analytics
+* Comment: uyan, changyan
 * Reward
 * Share Qrcode
 * SEO
