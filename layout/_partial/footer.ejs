@@ -59,7 +59,7 @@
 
     function dropdown(e) {
       var $this = $(this);
-      var btn = $this.hasClass('dropdown') ? $this : $this.parent();
+      var btn = $this; while (!btn.hasClass('dropdown')) btn = btn.parent();
       var panel = btn.find('.submenu');
 
       if (e.data.hide && !btn.hasClass('open') || e.data.show && btn.hasClass('open')) {
