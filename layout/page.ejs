@@ -43,9 +43,9 @@
     </div>
     <% } %>
 
-    <% if (page.comment !== false && config.uyan) { %>
+    <% if (page.comments !== false && config.uyan) { %>
     <div id="uyan_frame"></div>
-    <% } else if (page.comment !== false && config.changyan && config.changyan.appid) { %>
+    <% } else if (page.comments !== false && config.changyan && config.changyan.appid) { %>
     <div id="SOHUCS" sid="<%= page.path.replace(/index.html$/, '') %>" ></div>
     <% } %>
 
@@ -55,7 +55,7 @@
 </main>
 </div>
 
-<% if (page.comment !== false && config.uyan) { %>
+<% if (page.comments !== false && config.uyan) { %>
 <script>
 var uyan_config = {
   title: '<%= page.title %>',
@@ -64,7 +64,7 @@ var uyan_config = {
 };
 </script>
 <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=<%= config.uyan %>"></script>
-<% } else if (page.comment !== false && config.changyan && config.changyan.appid) { %>
+<% } else if (page.comments !== false && config.changyan && config.changyan.appid) { %>
 <script>
   (function(){
     var appid = '<%= config.changyan.appid %>';

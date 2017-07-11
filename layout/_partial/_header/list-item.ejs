@@ -2,10 +2,12 @@
 let url = '/' + path.replace('index.html', '');
 let isActive = (name, o) => ((o || menu)[name] == '/' ? is_home() : url.indexOf((o || menu)[name]) >= 0);
 for (var name in menu) {
-  if (typeof menu[name] === 'string') { %>
+  if (!menu[name]) continue;
+  if (typeof menu[name] === 'string' || menu[name].url) { %>
     <li class="list-item<%- isActive(name) ? ' active' : '' %>">
-      <a href="<%- url_for(menu[name]) %>" class="item-link">
-        <%- __('menu.' + name) %>
+      <a href="<%- menu[name].url || url_for(menu[name]) %>" class="item-link"
+            <%- menu[name].url ? 'target="_blank"' : '' %> >
+        <%- menu[name].title || __('menu.' + name) %>
         <% if (dropdown && name == 'categories') { %>
           <small>(<%- site.categories.length %>)</small>
         <% } %>
@@ -13,7 +15,7 @@ for (var name in menu) {
           <small>(<%- site.tags.length %>)</small>
         <% } %>
         <% if (dropdown && name == 'archives') { %>
-        <small>(<%- site.posts.length %>)</small>
+          <small>(<%- site.posts.length %>)</small>
         <% } %>
       </a>
     </li>

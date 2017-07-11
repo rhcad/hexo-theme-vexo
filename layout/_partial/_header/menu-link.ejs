@@ -1,5 +1,7 @@
 <% if (name && menu[name]) { %>
-  <a href="<%- url_for(menu[name]) %>" class="item-link<%- active ? ' mobile-active' : '' %>">
-    <%- __('menu.' + name) %>
+  <a href="<%- menu[name].url || url_for(menu[name]) %>"
+     class="item-link<%- active ? ' mobile-active' : '' %>"
+     <%- menu[name].url ? 'target="_blank"' : '' %> >
+    <%- menu[name].title || __('menu.' + name) %>
   </a>
 <% } %>
