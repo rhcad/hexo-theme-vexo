@@ -34,7 +34,9 @@
 
    git clone https://github.com/rhcad/hexo-theme-vexo.git themes/vexo
 
-   cp themes/vexo/_source/* source/
+   cp -r themes/vexo/_source/* source/
+   
+   npm i --save hexo-generator-search
    ```
 
 2. Modify `_config.yml` with your own info. look like this
