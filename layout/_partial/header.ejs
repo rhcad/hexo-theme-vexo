@@ -6,7 +6,8 @@
     </a>
     <% let menu = config.menu || theme.menu; %>
     <ul class="right-list">
-      <li class="list-item search-btn"><a class="item-link"><i class="fa fa-search"></i></a></li>
+      <li class="list-item search-btn"><a class="item-link" title="<%= __("local_search") %>">
+          <i class="fa fa-search"></i></a></li>
       <%- partial('_header/list-item', { menu: menu, dropdown: false }) %>
     </ul>
     <div class="menu">

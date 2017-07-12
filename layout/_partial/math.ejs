@@ -1,5 +1,5 @@
 <% let cdnroot = config.local ? '/_local' : 'http://cdn.bootcss.com', min = config.local ? '.' : '.min.'; %>
-<% if (!config.math || !/\$|\{% math %\}|\\\(|\\\[/.test(page.raw)) {}
+<% if (!config.math || !/\$(\$|[^\(])[^\$]*(\\|\^|\{).+\$|\{% math %\}|\\\(|\\\[/.test(page.raw)) {}
   else if (config.math.engine == 'mathjax' && position == 'head') { %>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({

@@ -30,12 +30,12 @@
   <% if (!config.local) { %><link rel="dns-prefetch" href="http://cdn.bootcss.com" /><% } %>
   <link href="<%- cdnroot %>/font-awesome/4.7.0/css/font-awesome<%= min %>css" rel="stylesheet">
   <link href="<%- cdnroot %>/nprogress/0.2.0/nprogress<%= min %>css" rel="stylesheet">
+  <% if (/<figure/.test(page.content)) { %>
   <link href="<%- cdnroot %>/highlight.js/9.12.0/styles/<%= theme.highlight %><%= min %>css" rel="stylesheet">
+  <% } %>
   <%- css('css/style') %>
   <script src="<%- cdnroot %>/jquery/3.2.1/jquery<%= min %>js"></script>
   <script src="<%- cdnroot %>/geopattern/1.2.3/js/geopattern.min.js"></script>
   <script src="<%- cdnroot %>/nprogress/0.2.0/nprogress<%= min %>js"></script>
-  <%- js('js/qrious') %>
-  <%- js('js/resize') %>
   <%- partial('math', {position: 'head'}) %>
 </head>

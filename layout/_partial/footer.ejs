@@ -20,8 +20,8 @@
 </footer>
 
 <% let cdnroot = config.local ? '/_local' : 'http://cdn.bootcss.com'; %>
-<% let min = config.local ? '.' : '.min.'; %>
-<%- js('js/device') %>
+<% let min = config.local ? '.' : '.min.', jsLoads = []; %>
+<% jsLoads.push('js/device') %>
 <%- partial('math', {position: 'script'}) %>
 
 <script>
@@ -37,60 +37,51 @@
     }
     s.parentNode.insertBefore(o, s);
   }
-  (function() {
-    async('<%- cdnroot %>/fastclick/1.0.6/fastclick<%= min %>js', function() {
-      FastClick.attach(document.body);
-    });
-
-    var hasLine = '<%- config.highlight["line_number"] %>';
-    async('<%- cdnroot %>/highlight.js/9.12.0/highlight.min.js', function() {
-      $('figure pre').each(function(i, block) {
-        var figure = $(this).parents('figure');
-        if (hasLine == 'false') {
-          figure.find('.gutter').hide();
-        }
-        var lang = figure.attr('class').split(' ')[1] || '';
-        var codeHtml = $(this).html();
-        var codeTag = document.createElement('code');
-        codeTag.className = lang;
-        codeTag.innerHTML = codeHtml;
-        $(this).attr('class', '').empty().html(codeTag);
-        figure.attr('data-lang', lang.toUpperCase());
-        hljs.highlightBlock(block);
-      });
-    });
-
-    function dropdown(e) {
-      var $this = $(this);
-      var btn = $this; while (!btn.hasClass('dropdown')) btn = btn.parent();
-      var panel = btn.find('.submenu');
-
-      if (e.data.hide && !btn.hasClass('open') || e.data.show && btn.hasClass('open')) {
-        return;
+  async('<%- cdnroot %>/fastclick/1.0.6/fastclick<%= min %>js', function() {
+    FastClick.attach(document.body);
+  });
+  <% if (/<figure/.test(page.content)) { %>
+  async('<%- cdnroot %>/highlight.js/9.12.0/highlight.min.js', function() {
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      var hasLine = '<%- config.highlight["line_number"] %>';
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
       }
-      panel.slideToggle();
-      btn.toggleClass('open');
-    }
-
-    function hideDropdown() {
-      $('.submenu').slideUp().parent().removeClass('open');
-    }
-
-    function initDropdown(el) {
-      var btn = el.find('.dropdown');
-      btn.on('click', {}, dropdown);
-      btn.find('a').on('mouseenter', {show: true}, dropdown);
-      el.on('mouseleave', hideDropdown);
-    }
-
-    initDropdown($('.right-list'));
-    document.addEventListener('scroll', hideDropdown);
-  })();
+      var lang = figure.attr('class').split(' ')[1] || '';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  });
+  <% } %>
 </script>
+
 <!-- Baidu Tongji -->
-<% if (config.baidu_track_id) { %>
+<% if (config.baidu_id) { %>
+<script>async('https://hm.baidu.com/hm.js?<%= config.baidu_id %>')</script>
+<% } %>
+
+<% if (theme.qrcode && !config.uyan && page.share !== false && page.layout == 'page') {
+  jsLoads.push('js/qrious') %>
 <script>
-  async('//hm.baidu.com/hm.js?<%= config.baidu_track_id %>');
+  new QRious({
+    element: document.getElementById('share-qrcode'),
+    value: document.location.href
+  });
 </script>
 <% } %>
-<%- js('js/script') %>
+
+<% if (theme.local_search && theme.local_search.enable) { %>
+  <%- js('js/localsearch.js?data=' + url_for(config.search.path || 'search.xml') +
+          '|' + theme.local_search.top_n_per_article +
+          '|' + theme.local_search.trigger ) %>
+<% } %>
+
+<% jsLoads.push('js/resize') %>
+<% jsLoads.push('js/script') %>
+<%- js(jsLoads) %>

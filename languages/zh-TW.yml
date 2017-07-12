@@ -10,6 +10,8 @@ archives_page: 文章歸檔
 projects_page: 開源項目
 share_qrcode: 掃描二維碼，分享此文章
 search_placeholder: 搜索...
+local_search: 站內搜索
+to_top: 回到頂部
 abstract: 摘要
 
 menu:

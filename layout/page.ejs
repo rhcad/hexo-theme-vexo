@@ -2,7 +2,7 @@
   <h2><%- page.title %></h2>
   <% if (page.show_date !== false) { %>
   <p class="post-date">
-    <span><%- date(page.date, "YYYY-MM-DD") %></span>
+    <span><%- date(page.date, "LL") %></span>
     <%- partial('_partial/category', { categories: page.categories }) %>
   </p>
   <% } %>
@@ -20,7 +20,7 @@
       </div>
     <% } %>
 
-    <% if (theme.reward && page.money !== false && /^zh-/.test(config.language || theme.language)) { %>
+    <% if (config.reward && page.money !== false && /^zh-/.test(config.language || theme.language)) { %>
     <div class="money-like">
       <div class="reward-btn">
         赏
@@ -54,6 +54,7 @@
 
 <script>
   (function () {
+    <% if (/<img /.test(page.content)) { %>
     // error image
     var mdImg = $(".markdown-content img");
     mdImg.on('error', function() {
@@ -94,19 +95,14 @@
         $('html').attr('style', '');
       });
     });
+    <% } %>
 
-    // qrcode
-    new QRious({
-      element: document.getElementById('share-qrcode'),
-      value: document.location.href
-    });
-
-    var md = $('.markdown-content');
+    <% if (config.reward && page.money !== false && /^zh-/.test(config.language || theme.language)) { %>
     var money = $('.money-like');
-
-    if (money[0] && md.height() < 1200) {
+    if (money[0] && $('.markdown-content').height() < 1200) {
       money.hide();
     }
+    <% } %>
 
   })();
 </script>

@@ -54,10 +54,9 @@ pre
   transform: translateY(-20px)
   transition: all 0.4s
   .abstract
-    margin: 15px 0 20px
+    margin: 15px 0
     font-family: font-kai
     font-size: 1.05em
-    font-style: italic
     color: color-default
   .post-article > :last-child
     margin-bottom: 0
@@ -122,6 +121,10 @@ h2.article-head
 
 .more
   font-weight: 600
+  display: inline-block
+  transition: all 0.3s
+  .desktop &:hover
+    transform: translateX(5px)
 
 #article-banner
   width: 100%

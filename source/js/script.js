@@ -23,6 +23,31 @@
     app.css(fade)
   })
 
+  function dropdown(e) {
+    var $this = $(this);
+    var btn = $this; while (!btn.hasClass('dropdown')) btn = btn.parent();
+    var panel = btn.find('.submenu');
+
+    if (e.data.hide && !btn.hasClass('open') || e.data.show && btn.hasClass('open')) {
+      return;
+    }
+    panel.slideToggle();
+    btn.toggleClass('open');
+  }
+
+  function hideDropdown() {
+    $('.submenu').slideUp().parent().removeClass('open');
+  }
+
+  function initDropdown(el) {
+    var btn = el.find('.dropdown');
+    btn.on('click', {}, dropdown);
+    btn.find('a').on('mouseenter', {show: true}, dropdown);
+    el.on('mouseleave', hideDropdown);
+  }
+
+  initDropdown($('.right-list'));
+
   function updateFixedHeaderClass () {
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
     var headerH = header.height()
@@ -43,19 +68,14 @@
     if (header.hasClass('open')) {
       toggleMenu()
     }
-    var dropdown = $('.dropdown.open')
-    if (dropdown.hasClass('open')) {
-      dropdown.removeClass('open')
-      $('.submenu').hide()
-    }
+    hideDropdown()
   })
 
   $('.search-btn').on('click', function () {
     if (header.hasClass('open')) {
       toggleMenu()
     }
-    $('.dropdown.open').removeClass('open')
-    $('.submenu').hide()
+    hideDropdown()
   })
 
   $('.reward-btn').on('click', function () {
@@ -77,5 +97,6 @@
       top.removeClass('opacity')
     }
     updateFixedHeaderClass()
+    hideDropdown()
   })
 })(jQuery)
