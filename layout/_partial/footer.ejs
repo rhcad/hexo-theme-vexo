@@ -1,13 +1,16 @@
 <footer class="app-footer">
   <p class="copyright">
-    <span>&copy;
+    <span class="author">&copy;
       <%= config.from_year ? config.from_year + '-' : '' %><%= new Date().getFullYear() %>
       <%= config.author %>
     </span>
     <% if (config.icp) { %>
-    <span><a href="http://www.miitbeian.gov.cn/" target="_blank"><%= config.icp %></a></span>
+    <span class="icp"><a href="http://www.miitbeian.gov.cn/" target="_blank"><%= config.icp %></a></span>
     <% } if (!(config.menu || theme.menu)['about']) { %>
     <span><a href="/about/">关于本站</a></span>
+    <% } %>
+    <% if (config.cnzz_id) { %>
+    <script src="https://s4.cnzz.com/z_stat.php?id=<%= config.cnzz_id %>&web_id=<%= config.cnzz_id %>"></script>
     <% } %>
   </p>
   <p class="powered-by">

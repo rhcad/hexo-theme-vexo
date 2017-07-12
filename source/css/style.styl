@@ -53,6 +53,12 @@ pre
   opacity: 0
   transform: translateY(-20px)
   transition: all 0.4s
+  .abstract
+    margin: 15px 0 20px
+    font-family: font-kai
+    font-size: 1.05em
+    font-style: italic
+    color: color-default
   .post-article > :last-child
     margin-bottom: 0
   &:not(.home-page):not(.project-app)
@@ -130,7 +136,8 @@ h2.article-head
     padding: 60px 10px 10px 10px
   h2, h3
     margin: 0 0 0.4em
-    font-size: 2.2em
+    font-size: 2em
+    font-family: font-hei
     color: color-white
     text-shadow: 0 0 40px color-dark
     opacity: 0
@@ -138,6 +145,9 @@ h2.article-head
     transition: all 0.4s
     @media m-mobile
       font-size: 1.6em
+    &::selection
+      background: color-white
+      color: color-dark
   .post-date
     margin: 10px 0
     color: color-white
@@ -145,17 +155,23 @@ h2.article-head
     transform: translateY(-20px)
     transition: all 0.4s
     transition-delay: 0.05s
+    &::selection, span::selection
+      background: color-white
+      color: color-dark
     span
       margin-right: 8px
   h3
     font-size: 1.8em
     @media m-mobile
       font-size: 1.4em
+  .category-link
+    background-color: transparent
   .article-date
-    color: color-white
   .category-link
     color: color-white
-    background-color: transparent
+    &::selection
+      background: color-white
+      color: color-dark
 
 .category-list-count
 .tag-list-count
@@ -190,7 +206,7 @@ h2.article-head
     font-size: .9em
 
 .money-like
-  padding: 2em 0
+  padding: 1em 0
   .reward-btn
     cursor: pointer
     font-size: 1.6em
@@ -251,7 +267,7 @@ h2.article-head
 .notice
   font-size: 12px
   display: block
-  margin-top: 10px
+  margin: 10px 0
   text-align: center
   color: color-gray
   font-style: italic

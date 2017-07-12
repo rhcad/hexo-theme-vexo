@@ -10,7 +10,9 @@
       </h2>
       <%- partial('_partial/home-date', { post: post }) %>
       <div class="article-summary">
-        <% if (post.excerpt) { %>
+        <% if (post.description) { %>
+          <p><%= __('abstract') + ': ' + post.description %></p>
+        <% } if (post.excerpt) { %>
           <%- post.excerpt %>
         <% } else { %>
           <% let texts = truncate(strip_html(post.content), { length: 150, omission: ' ...' }).split('\n'); %>

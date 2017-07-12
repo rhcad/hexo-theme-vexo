@@ -15,7 +15,7 @@
     siteNum:8,
     sm:"weixin,cqq,qzone,tsina,tqq,email,ydnote,evernote",
     url: '<%= url.replace(/index.html$/, '') %>',
-    summary: '<%= page.summary || config.subtitle %>',
+    summary: '<%= page.description || config.subtitle || config.description %>',
     title: '<%= page.title %>',
     shortUrl:true,
     hideMore:false
@@ -29,6 +29,7 @@
 <script>
   var uyan_config = {
     title: '<%= page.title %>',
+    summary: '<%= page.description || config.subtitle || config.description %>',
     url: '<%= url.replace(/index.html$/, '') %>',
     du: '<%= config.url.replace('http://', '') %>'
   };
