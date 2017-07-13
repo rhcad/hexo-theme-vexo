@@ -12,11 +12,9 @@
 
 <script>
   <% if (!page.progress) { %>
-  window.onload = function() {
-    setTimeout(function() {
-      NProgress.done();
-    }, 200);
-  };<% } %>
+  $(function() {
+    setTimeout(NProgress.done, 200);
+  });<% } %>
 
   (function () {
     var footer  = $('.app-footer');

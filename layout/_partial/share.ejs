@@ -1,5 +1,5 @@
 <% if (page.share !== false && config.uyan) { %>
-<div class="jiathis_style jiathis_shares">
+<div class="jiathis_style" id="jia_shares">
   <span class="jiathis_txt">分享到：</span>
   <a class="jiathis_button_tools_1"></a>
   <a class="jiathis_button_tools_2"></a>
@@ -9,7 +9,7 @@
   <a href="http://www.jiathis.com/share?uid=<%= config.uyan %>" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
   <a class="jiathis_counter_style"></a>
 </div>
-<script type="text/javascript" >
+<script>
   var jiathis_config={
     data_track_clickback:true,
     siteNum:8,
@@ -21,7 +21,7 @@
     hideMore:false
   }
 </script>
-<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js?uid=<%= config.uyan %>" charset="utf-8"></script>
+<script async defer src="http://v3.jiathis.com/code_mini/jia.js?uid=<%= config.uyan %>" charset="utf-8" onload="showBlock('jia_shares')"></script>
 
 <% } if (page.comments !== false && config.uyan) { %>
 
@@ -33,8 +33,11 @@
     url: '<%= url.replace(/index.html$/, '') %>',
     du: '<%= config.url.replace('http://', '') %>'
   };
+  function uyanLoaded() {
+    $('.app-body').addClass('clip-height');
+  }
 </script>
-<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=<%= config.uyan %>"></script>
+<script async defer src="http://v2.uyan.cc/code/uyan.js?uid=<%= config.uyan %>" onload="uyanLoaded()"></script>
 
 <% } else if (page.comments !== false && config.changyan && config.changyan.appid) { %>
 <div id="SOHUCS" sid="<%= page.path.replace(/index.html$/, '') %>" ></div>
@@ -44,7 +47,7 @@
     var conf = '<%= config.changyan.conf %>';
     var width = window.innerWidth || document.documentElement.clientWidth;
     if (width < 960) {
-      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" ' +
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" async defer ' +
               'src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
     } else {
       var loadJs = function(d, a) {

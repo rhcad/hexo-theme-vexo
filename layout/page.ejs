@@ -46,13 +46,19 @@
     </div>
     <% } %>
 
-    <%- partial('_partial/share') %>
     <%- partial('_partial/paginator') %>
+    <%- partial('_partial/share') %>
   </article>
 </main>
 </div>
 
 <script>
+  function showBlock(id, value) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.style.display = value || 'block';
+    }
+  }
   (function () {
     <% if (/<img /.test(page.content)) { %>
     // error image
