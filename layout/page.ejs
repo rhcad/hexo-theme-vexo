@@ -13,6 +13,7 @@
     <% if (page.description) { %>
       <p class="abstract"><%= __('abstract') + ': ' + page.description %></p>
     <% } %>
+    <%- partial('_partial/geogebra', {type: 'head'}) %>
     <section class="markdown-content"><%- page.content %></section>
     <% if (page.tags && page.tags.length) { %>
       <div class="tags">

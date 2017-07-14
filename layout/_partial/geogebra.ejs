@@ -1,0 +1,35 @@
+<% let ggb = config.geogebra || {};
+if (!page.ggb || ['web', 'web3d', 'webSimple'].indexOf(page.ggb) < 0) {}
+else if (type === 'head') { %>
+  <script src="<%- config.local ? '/_local/GeoGebra/deployggb.js' : ggb.deployggb || 'https://cdn.geogebra.org/apps/deployggb.js' %>"></script>
+  <script>
+    function createGGBApplet (appletID, previewFilePath, parameters) {
+      function setDefault(name, value) {
+        if (parameters[name] === undefined) {
+          parameters[name] = value;
+        }
+      }
+      setDefault('enableShiftDragZoom', false);
+      setDefault('enableRightClick', false);
+
+      var applet = new GGBApplet(parameters, appletID);
+      <% if (config.local || ggb.codebase) { %>
+      applet.setHTML5Codebase('<%- config.local ? '/_local/GeoGebra/HTML5/5.0/' : ggb.codebase %><%- page.ggb %>/');
+      <% } %>
+      applet.setPreviewImage(previewFilePath, '<%- url_for('css/images/loading.png') %>');
+      return applet;
+    }
+
+    function injectGGBApplets() {
+      var applets = Array.prototype.slice.apply(arguments);
+      applets = applets.map(function(applet) {
+        return applet.inject || typeof applet !== 'object' ? applet : createGGBApplet(null, null, applet);
+      });
+      $(function() {
+        applets.forEach(function(applet) {
+          applet.inject("html5")
+        });
+      });
+    }
+  </script>
+<% } %>
