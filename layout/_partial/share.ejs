@@ -1,4 +1,6 @@
-<% if (page.share !== false && config.uyan) { %>
+<% let thumbnail = page.thumbnail && (/^(http|\/)/.test(page.thumbnail) ? page.thumbnail :
+        url.replace(/index\.html$/, '') + page.thumbnail);
+if (page.share !== false && config.uyan) { %>
 <div class="jiathis_style" id="jia_shares">
   <span class="jiathis_txt">分享到：</span>
   <a class="jiathis_button_tools_1"></a>
@@ -18,6 +20,7 @@
     summary: '<%= page.description || config.subtitle || config.description %>',
     title: '<%= page.title %>',
     shortUrl:true,
+    <%- thumbnail ? 'pic: "' + thumbnail + '",' : '' %>
     hideMore:false
   }
 </script>

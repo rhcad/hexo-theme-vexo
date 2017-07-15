@@ -23,30 +23,30 @@
     app.css(fade)
   })
 
-  function dropdown(e) {
-    var $this = $(this);
-    var btn = $this; while (!btn.hasClass('dropdown')) btn = btn.parent();
-    var panel = btn.find('.submenu');
+  function dropdown (e) {
+    var $this = $(this)
+    var btn = $this; while (!btn.hasClass('dropdown')) btn = btn.parent()
+    var panel = btn.find('.submenu')
 
-    if (e.data.hide && !btn.hasClass('open') || e.data.show && btn.hasClass('open')) {
-      return;
+    if ((e.data.hide && !btn.hasClass('open')) || (e.data.show && btn.hasClass('open'))) {
+      return
     }
-    panel.slideToggle();
-    btn.toggleClass('open');
+    panel.slideToggle()
+    btn.toggleClass('open')
   }
 
-  function hideDropdown() {
-    $('.submenu').slideUp().parent().removeClass('open');
+  function hideDropdown () {
+    $('.submenu').slideUp().parent().removeClass('open')
   }
 
-  function initDropdown(el) {
-    var btn = el.find('.dropdown');
-    btn.on('click', {}, dropdown);
-    btn.find('a').on('mouseenter', {show: true}, dropdown);
-    el.on('mouseleave', hideDropdown);
+  function initDropdown (el) {
+    var btn = el.find('.dropdown')
+    btn.on('click', {}, dropdown)
+    btn.find('a').on('mouseenter', {show: true}, dropdown)
+    el.on('mouseleave', hideDropdown)
   }
 
-  initDropdown($('.right-list'));
+  initDropdown($('.right-list'))
 
   function updateFixedHeaderClass () {
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop

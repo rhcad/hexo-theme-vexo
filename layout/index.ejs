@@ -9,7 +9,12 @@
         <a href="<%- url_for(post.path) %>"><%- post.title %></a>
       </h2>
       <%- partial('_partial/home-date', { post: post }) %>
-      <div class="article-summary">
+      <% if (post.thumbnail) { %>
+      <div class="article-thumbnail">
+        <img src="<%- /^(http|\/)/.test(post.thumbnail) ? post.thumbnail : post.path.replace(/index\.html$/, '') + post.thumbnail %>">
+      </div>
+      <% } %>
+      <div class="article-summary<%= post.thumbnail ? ' has-thumbnail' : '' %>">
         <% if (post.description) { %>
           <p><%= __('abstract') + ': ' + post.description %></p>
         <% } if (post.excerpt) { %>
