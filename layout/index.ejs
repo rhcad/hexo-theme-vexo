@@ -11,7 +11,7 @@
       <%- partial('_partial/home-date', { post: post }) %>
       <% if (post.thumbnail) { %>
       <div class="article-thumbnail">
-        <img src="<%- /^(http|\/)/.test(post.thumbnail) ? post.thumbnail : post.path.replace(/index\.html$/, '') + post.thumbnail %>">
+        <img src="<%- /^(http|\/)/.test(post.thumbnail) ? post.thumbnail : url_for(post.path.replace(/index\.html$/, '') + post.thumbnail) %>">
       </div>
       <% } %>
       <div class="article-summary<%= post.thumbnail ? ' has-thumbnail' : '' %>">

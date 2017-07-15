@@ -1,6 +1,4 @@
-<%
-let url = '/' + path.replace('index.html', '');
-let isActive = (name, o) => ((o || menu)[name] == '/' ? is_home() : url.indexOf((o || menu)[name]) >= 0);
+<% let isActive = (name, o) => ((o || menu)[name] + 'index.html').indexOf(path) >= 0;
 for (var name in menu) {
   if (!menu[name]) continue;
   if (typeof menu[name] === 'string' || menu[name].url) { %>
