@@ -3,6 +3,8 @@
   let description = page.description || config.description || __('description');
   let cdnroot = config.local ? '/_local' : 'http://cdn.bootcss.com';
   let min = config.local ? '.' : '.min.';
+  let thumbnail = page.thumbnail && (/^(http|\/)/.test(page.thumbnail) ? page.thumbnail :
+          path.replace(/index\.html$/, '') + page.thumbnail);
 %>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -20,7 +22,7 @@
   <meta property="og:type" content="article">
   <meta property="og:title" content="<%= title %>">
   <meta property="og:description" content="<%= description %>">
-  <meta property="og:image" content="<%- url_for('css/images/logo.png') %>">
+  <meta property="og:image" content="<%- url_for(thumbnail || 'css/images/logo.png') %>">
 
   <!--[if IE]>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
