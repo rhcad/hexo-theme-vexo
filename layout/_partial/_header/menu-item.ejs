@@ -1,7 +1,4 @@
-<%
-  let url = '/' + path.replace('index.html', '');
-  let isActive = name => (menu[name] == '/' ? is_home() : url.indexOf(menu[name]) >= 0);
-%>
+<% let isActive = name => menu[name] + 'index.html').indexOf(url_for(path)) === 0 %>
 <%- partial('menu-link', { menu: menu, name: name == 'archives' && 'categories', active: isActive('categories') }) %>
 <%- partial('menu-link', { menu: menu, name: name == 'archives' && 'tags', active: isActive('tags') }) %>
 <%- partial('menu-link', { menu: menu, name: name, active: isActive(name) }) %>
