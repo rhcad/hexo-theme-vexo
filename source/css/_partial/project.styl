@@ -7,17 +7,24 @@
   display: flex
   justify-content: space-between
   flex-wrap: wrap
-  @media screen and (max-width: 960px)
-    width: 660px
-  @media screen and (max-width: 660px)
-    width: 320px
-  @media screen and (max-width: 612px)
-    width: 306px
   .project-card
     width: 320px
     height: 160px
     margin-bottom: 20px
     position: relative
+  @media screen and (max-width: 996px)
+    width: 650px
+  @media screen and (max-width: 682px) and (min-width: 642px)
+    width: 620px
+    .project-card
+      width: 305px
+  @media screen and (max-width: 642px)
+    width: 320px
+  @media screen and (max-width: 352px)
+    width: 300px
+    .project-card
+      width: 300px
+  .project-card
     .card-wrap
       box-sizing: border-box
       height: 100%

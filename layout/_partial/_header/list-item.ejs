@@ -1,4 +1,4 @@
-<% let isActive = (name, o) => ((o || menu)[name] + 'index.html').indexOf(path) >= 0;
+<% let isActive = (name, o) => ((o || menu)[name] + 'index.html').indexOf(url_for(path)) === 0;
 for (var name in menu) {
   if (!menu[name]) continue;
   if (typeof menu[name] === 'string' || menu[name].url) { %>
@@ -6,15 +6,6 @@ for (var name in menu) {
       <a href="<%- menu[name].url || url_for(menu[name]) %>" class="item-link"
             <%- menu[name].url ? 'target="_blank"' : '' %> >
         <%- menu[name].title || __('menu.' + name) %>
-        <% if (dropdown && name == 'categories') { %>
-          <small>(<%- site.categories.length %>)</small>
-        <% } %>
-        <% if (dropdown && name == 'tags') { %>
-          <small>(<%- site.tags.length %>)</small>
-        <% } %>
-        <% if (dropdown && name == 'archives') { %>
-          <small>(<%- site.posts.length %>)</small>
-        <% } %>
       </a>
     </li>
   <% } else { %>
