@@ -1,0 +1,28 @@
+<div id="article-banner">
+  <h2><%- page.title && __(page.title) || config.subtitle || config.title %></h2>
+  <p class="post-date"><%- page.description || config.description || __('description') %></p>
+</div>
+<main class="app-body project-app">
+  <% if (page.cards) { %>
+  <div class="card-container">
+    <% page.cards.forEach(item => { %>
+      <section class="project-card">
+        <a class="card-wrap" href="<%- url_for(item.url) %>">
+          <div class="card-header" data-name="<%= item.name %>"></div>
+          <h3 class="card-title"><%= item.name %></h3>
+          <p class="card-description"><%= item.description %></p>
+          <div class="card-footer"></div>
+        </a>
+      </section>
+      <% }) %>
+  </div>
+  <% } else { %>
+    <%- page.content %>
+  <% } %>
+</main>
+<script>
+  $('.card-header').each(function() {
+    var name = $(this).data('name');
+    $(this).geopattern(name);
+  });
+</script>

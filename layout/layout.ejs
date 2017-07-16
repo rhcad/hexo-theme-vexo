@@ -35,7 +35,7 @@
     resize();
 
     <% if (page.geopattern !== false) { %>
-    $('#article-banner').geopattern('<%- page.path %>', {color: '<%- is_home() ? '#4078c0' : '#1d9f75' %>'});
+    $('#article-banner').geopattern('<%- page.path %>', {color: '<%- path === 'index.html' ? '#4078c0' : '#1d9f75' %>'});
     <% } %>
   })();
 </script>

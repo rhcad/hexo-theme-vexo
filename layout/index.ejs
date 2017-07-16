@@ -1,6 +1,13 @@
 <div id="article-banner">
-  <h2><%- config.subtitle %></h2>
+  <% if (config.index_generator && config.index_generator.path) { %>
+  <p class="post-date categories">
+    <span><%- __('menu.blog') %> <small>(<%- site.posts.length %>)</small></span>
+    <%- list_categories({show_count: false, orderby: 'posts.length', order: -1, depth: 1, style: 'span', separator: '' }) %>
+  </p>
+  <% } else { %>
+  <h2><%- config.subtitle || config.title %></h2>
   <p class="post-date"><%- config.description || __('description') %></p>
+  <% } %>
 </div>
 <main class="app-body home-page">
   <% page.posts.each(function(post) { %>
