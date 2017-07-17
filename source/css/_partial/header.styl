@@ -12,6 +12,8 @@
       border-bottom-color: #a2e0da
     a
       color: #b4f2ec
+    .page-title
+      display: none
 
 .fixed-header
   position: fixed
@@ -26,6 +28,17 @@
   .mobile-active
     font-weight: 700
     color: color-dark
+  .site-title
+    display: none
+  .home-link.page-title
+    font-size: 1.1em
+    line-height: 40px
+  @media m-pad
+    .home-link.page-title
+      display: none
+    .site-title
+      display: inline
+
 
 .header-container
   max-width: 1200px

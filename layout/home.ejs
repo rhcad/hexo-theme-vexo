@@ -6,12 +6,15 @@
   <% if (page.cards) { %>
   <div class="card-container">
     <% page.cards.forEach(item => { %>
-      <section class="project-card">
+      <section class="project-card" id="card-<%= item.id %>">
         <a class="card-wrap" href="<%- url_for(item.url) %>">
           <div class="card-header" data-name="<%= item.name %>"></div>
           <h3 class="card-title"><%= item.name %></h3>
           <p class="card-description"><%= item.description %></p>
-          <div class="card-footer"></div>
+          <div class="card-footer hidden">
+            <span><i class="fa fa-user-o"></i><span class="user-count">0</span></span>
+            <span><i class="fa fa-file-o"></i><span class="file-count">0</span></span>
+          </div>
         </a>
       </section>
       <% }) %>
