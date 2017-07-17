@@ -86,9 +86,7 @@
     $('html,body').animate({ scrollTop: 0 }, 600)
   })
 
-  if (banner) {
-    header.removeClass('fixed-header')
-  }
+  updateFixedHeaderClass()
   document.addEventListener('scroll', function () {
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
     if (scrollTop > 100) {

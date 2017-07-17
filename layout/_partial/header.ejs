@@ -1,9 +1,10 @@
-<header class="header">
+<header class="header fixed-header">
   <div class="header-container">
     <a class="home-link" href="<%- url_for() %>">
       <div class="logo"></div>
-      <span><%- config.title %></span>
+      <span class="site-title"><%- config.title %></span>
     </a>
+    <span class="home-link page-title"><%- page.title || config.title %></span>
     <% let menu = config.menu || theme.menu; %>
     <ul class="right-list">
       <li class="list-item search-btn"><a class="item-link" title="<%= __("local_search") %>">
