@@ -18,6 +18,6 @@ if (location.href.indexOf('/_/') > 0) {
 } else if (location.href.indexOf('/#/') > 0) {
   location = location.href.substring(location.href.indexOf('/#/') + 1);
 } else {
-  $('#url').html(location.href.replace(/^http(s)?:\/\/[^\/]+/, ''));
+  $('#url').html(location.href.replace(/^http(s)?:\/\/[^\/]+|\?.+$/g, ''));
 }
 </script>

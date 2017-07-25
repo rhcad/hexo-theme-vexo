@@ -2,7 +2,7 @@
 
 > Vexo is a Hexo theme inspired by [Vue.js](https://cn.vuejs.org) official website.
 
-[![Build Status](https://travis-ci.org/rhcad/hexo-theme-vexo.svg?branch=master)](https://travis-ci.org/rhcad/hexo-theme-vexo)
+[![Build Status](https://travis-ci.org/rhcad/hexo-theme-vexo.svg?branch=ggb)](https://travis-ci.org/rhcad/hexo-theme-vexo)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 
@@ -12,7 +12,7 @@
 
 ## Demo
 
-[Live Example](https://rhcad.github.io/)
+[Live Example](https://ggbstudy.top/blog/)
 
 ## Features
 
@@ -24,6 +24,7 @@
 * SEO
 * Immersive Status Bar
 * Internal Search Engine
+* GeoGebra, MathJax and KaTeX
 
 ## Install
 
@@ -32,7 +33,7 @@
    ```
    cd your-hexo-folder
 
-   git clone https://github.com/rhcad/hexo-theme-vexo.git themes/vexo
+   git clone https://github.com/rhcad/hexo-theme-vexo.git -b ggb themes/vexo
 
    cp -r themes/vexo/_source/* source/
    
