@@ -9,12 +9,12 @@
     <% } if (!(config.menu || theme.menu)['about']) { %>
     <span><a href="/about/">关于本站</a></span>
     <% } %>
-    <% if (config.cnzz_id) { %>
+    <% if (config.cnzz_id && !config.local) { %>
     <script src="https://s4.cnzz.com/z_stat.php?id=<%= config.cnzz_id %>&web_id=<%= config.cnzz_id %>"></script>
     <% } %>
   </p>
   <p class="powered-by">
-    <span>Powered by <a href="https://hexo.io" target="_blank">Hexo</a></span>
+    <span>Powered by <a href="https://wiki.geogebra.org/en/Reference:Math_Apps_Embedding" target="_blank">GeoGebra</a></span>
     <span>Theme - <a href="https://github.com/rhcad/hexo-theme-vexo" target="_blank">vexo</a></span>
   </p>
 </footer>
@@ -62,7 +62,7 @@
 </script>
 
 <!-- Baidu Tongji -->
-<% if (config.baidu_id) { %>
+<% if (config.baidu_id && !config.local) { %>
 <script>async('https://hm.baidu.com/hm.js?<%= config.baidu_id %>')</script>
 <% } %>
 
@@ -83,3 +83,12 @@
 <% } %>
 
 <%- js(['js/device', 'js/resize', 'js/script']) %>
+
+<% if (page.vue) { %>
+<script src="<%- cdnroot %>/vue/2.4.2/vue<%= min %>js"></script>
+<% } %>
+
+<% (page.scripts || []).forEach(src => {
+  if (/\.js$/i.test(src)) { %>
+<script src="<%= src %>"></script>
+<% } }) %>

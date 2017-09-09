@@ -51,7 +51,7 @@
   function updateFixedHeaderClass () {
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
     var headerH = header.height()
-    if (scrollTop > headerH || header.hasClass('open')) {
+    if (!banner || scrollTop > headerH || header.hasClass('open')) {
       header.addClass('fixed-header')
     } else if (scrollTop < headerH) {
       header.removeClass('fixed-header')

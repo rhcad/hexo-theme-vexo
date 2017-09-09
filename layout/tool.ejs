@@ -1,0 +1,14 @@
+<% if (page.banner === false) { %>
+<div class="no-banner"></div>
+<% } else { %>
+<div id="article-banner">
+  <h2><%- page.title && __(page.title) || config.subtitle || config.title %></h2>
+  <p class="post-date"><%- page.description || config.description || __('description') %></p>
+</div>
+<% } %>
+<main class="app-body project-app">
+  <%- partial('_partial/geogebra', {type: 'head'}) %>
+  <div id="content">
+    <%- page.content %>
+  </div>
+</main>

@@ -39,5 +39,10 @@
   <script src="<%- cdnroot %>/jquery/3.2.1/jquery<%= min %>js"></script>
   <script src="<%- cdnroot %>/geopattern/1.2.3/js/geopattern.min.js"></script>
   <script src="<%- cdnroot %>/nprogress/0.2.0/nprogress<%= min %>js"></script>
+
+  <% (page.scripts || []).forEach(src => {
+    if (/\.css$/i.test(src)) { %>
+  <link rel="stylesheet" href="<%= src %>">
+  <% } }) %>
   <%- partial('math', {position: 'head'}) %>
 </head>

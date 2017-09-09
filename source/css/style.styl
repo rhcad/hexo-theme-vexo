@@ -53,7 +53,7 @@ pre
   position: relative
   opacity: 0
   transform: translateY(-20px)
-  transition: all 0.4s
+  transition: all 0.3s
   .abstract
     margin: 15px 0
     font-family: font-kai
@@ -135,19 +135,21 @@ h2.article-head
     color: color-dark
     transform: translateX(5px)
 
+.no-banner
+  height: 60px
 #article-banner
   width: 100%
   box-sizing: border-box
   opacity: .75
   top: 0
   left: 0
-  padding: 60px 20px 15px 20px
+  padding: 45px 20px 15px 20px
   text-align: center
   position: relative
   @media m-mobile
-    padding: 60px 10px 10px 10px
+    padding: 45px 10px 10px 10px
   h2, h3
-    margin: 0 0 0.4em
+    margin: 0.4em 0
     font-size: 2em
     font-family: font-hei
     color: color-white
@@ -354,6 +356,11 @@ h2.article-head
     opacity: .2
   50%
     opacity: 1
+
+.desktop
+  input[type=file]
+  button
+    cursor: pointer
 
 @import "_partial/header"
 @import "_partial/footer"

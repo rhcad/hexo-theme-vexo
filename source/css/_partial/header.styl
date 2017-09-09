@@ -33,12 +33,11 @@
   .home-link.page-title
     font-size: 1.1em
     line-height: 40px
-  @media m-pad
-    .home-link.page-title
-      display: none
-    .site-title
-      display: inline
-
+    overflow-x: hidden
+    white-space: nowrap
+    max-width: calc(100% - 170px - 50px)
+    @media m-mobile
+      max-width: calc(100% - 30px - 50px)
 
 .header-container
   max-width: 1200px

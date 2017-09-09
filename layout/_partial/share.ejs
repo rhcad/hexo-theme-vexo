@@ -24,9 +24,9 @@ if (page.share !== false && config.uyan) { %>
     hideMore:false
   }
 </script>
+<% if (!config.local) { %>
 <script async defer src="http://v3.jiathis.com/code_mini/jia.js?uid=<%= config.uyan %>" charset="utf-8" onload="showBlock('jia_shares')"></script>
-
-<% } if (page.comments !== false && config.uyan) { %>
+<% }} if (page.comments !== false && config.uyan) { %>
 
 <div id="uyan_frame"></div>
 <script>
@@ -40,9 +40,9 @@ if (page.share !== false && config.uyan) { %>
     $('.app-body').addClass('clip-height');
   }
 </script>
+<% if (!config.local) { %>
 <script async defer src="http://v2.uyan.cc/code/uyan.js?uid=<%= config.uyan %>" onload="uyanLoaded()"></script>
-
-<% } else if (page.comments !== false && config.changyan && config.changyan.appid) { %>
+<% }} else if (page.comments !== false && config.changyan && config.changyan.appid) { %>
 <div id="SOHUCS" sid="<%= page.path.replace(/index.html$/, '') %>" ></div>
 <script>
   (function(){

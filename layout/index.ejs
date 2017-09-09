@@ -2,7 +2,9 @@
   <% if (config.index_generator && config.index_generator.path) { %>
   <p class="post-date categories">
     <span><%- __('menu.blog') %> <small>(<%- site.posts.length %>)</small></span>
-    <%- list_categories({show_count: false, orderby: 'posts.length', order: -1, depth: 1, style: 'span', separator: '' }) %>
+    <span><a href="<%- url_for('categories') %>"><%- __('menu.categories') %></a></span>
+    <span><a href="<%- url_for('tags') %>"><%- __('menu.tags') %></a></span>
+    <span><a href="<%- url_for('archives') %>"><%- __('menu.archives') %></a></span>
   </p>
   <% } else { %>
   <h2><%- config.subtitle || config.title %></h2>
