@@ -3,6 +3,7 @@
 </div>
 <main class="app-body project-app">
   <div class="card-container" id="all-project"></div>
+  <p id="loading">正在加载开源项目列表...</p>
 </main>
 <script>
   (function() {
@@ -24,7 +25,9 @@
           }).sort(function(a, b) {
             return (b.stargazers_count - a.stargazers_count);
           }).slice(0, 12);
+
           NProgress.done();
+          $('#loading').hide();
 
           var cardHtml = repos.map(function(item) {
             return (
