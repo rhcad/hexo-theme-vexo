@@ -4,7 +4,7 @@ if (!page.ggb || ['web', 'web3d', 'webSimple'].indexOf(page.ggb) < 0) {}
 else if (type === 'head') { %>
   <script src="<%- config.local ? '/_local/GeoGebra/deployggb.js' : ggb.deployggb || 'https://cdn.geogebra.org/apps/deployggb.js' %>"></script>
   <script>
-    function createGGBApplet (appletID, previewFile, parameters) {
+    window.createGGBApplet = function(appletID, previewFile, parameters) {
       function setDefault(name, value) {
         if (parameters[name] === undefined) {
           parameters[name] = value;
@@ -45,9 +45,9 @@ else if (type === 'head') { %>
       <% } %>
       applet.setPreviewImage(previewFile, '<%- url_for('css/images/loading.png') %>');
       return applet;
-    }
+    };
 
-    function injectGGBApplets() {
+    window.injectGGBApplets = function() {
       var applets = Array.prototype.slice.apply(arguments);
       applets = applets.map(function(applet) {
         if (typeof applet === 'object' && !applet.inject) {
