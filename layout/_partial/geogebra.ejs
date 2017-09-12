@@ -5,6 +5,10 @@ else if (type === 'head') { %>
   <script src="<%- config.local ? '/_local/GeoGebra/deployggb.js' : ggb.deployggb || 'https://cdn.geogebra.org/apps/deployggb.js' %>"></script>
   <script>
     window.createGGBApplet = function(appletID, previewFile, parameters) {
+      function getTick() {
+        var d = new Date();
+        return d.getMinutes() + ':' + d.getSeconds() + '.' + d.getMilliseconds();
+      }
       function setDefault(name, value) {
         if (parameters[name] === undefined) {
           parameters[name] = value;
@@ -12,7 +16,7 @@ else if (type === 'head') { %>
       }
       var oldOnLoad = parameters.appletOnLoad;
       function appletOnLoad() {
-        console.log('#' + parameters.id + ' loaded');
+        console.log('#' + parameters.id + ' loaded at ' + getTick());
         window.ggbApplet = window[parameters.id];
         if (oldOnLoad) {
           oldOnLoad(parameters.id);
@@ -44,6 +48,7 @@ else if (type === 'head') { %>
       applet.setHTML5Codebase('<%- config.local ? '/_local/GeoGebra/HTML5/5.0/' : ggb.codebase %><%- page.ggb %>/');
       <% } %>
       applet.setPreviewImage(previewFile, '<%- url_for('css/images/loading.png') %>');
+      console.log('#' + parameters.id + ' created at ' + getTick());
       return applet;
     };
 

@@ -6,9 +6,9 @@
   <p class="post-date"><%- page.description || config.description || __('description') %></p>
 </div>
 <% } %>
-<main class="app-body tool-app">
+<main class="app-body tool-app<%= page.full_page ? ' full-page' : ''%>">
   <%- partial('_partial/geogebra', {type: 'head'}) %>
-  <div id="content" class="<%= page.full_page ? 'full-page' : ''%>">
+  <div id="content">
     <%- page.content %>
   </div>
 </main>
