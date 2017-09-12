@@ -27,7 +27,8 @@
         <% if (post.description) { %>
           <p><%= __('abstract') + ': ' + post.description %></p>
         <% } if (post.excerpt) { %>
-          <%- post.excerpt %>
+        <%- partial('_partial/geogebra', {type: 'head', page: post}) %>
+        <%- post.excerpt %>
         <% } else { %>
           <% let texts = truncate(strip_html(post.content), { length: 150, omission: ' ...' }).split('\n'); %>
           <%- texts.map(t => '<p>' + t + '</p>').join('') %>

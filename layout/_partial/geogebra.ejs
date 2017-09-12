@@ -74,3 +74,12 @@ else if (type === 'head') { %>
     }
   </script>
 <% } %>
+
+<% let cdnroot = config.local ? '/_local' : 'http://cdn.bootcss.com';
+  let min = config.local ? '.' : '.min.';
+  if (type === 'head' && page.raphael) { %>
+<script src="<%- cdnroot %>/raphael/2.2.7/raphael<%= min %>js"></script>
+<% } %>
+<% if (type === 'head' && page.jsxgraph) { %>
+<script src="<%- cdnroot %>/jsxgraph/0.99.6/jsxgraphcore.js"></script>
+<% } %>

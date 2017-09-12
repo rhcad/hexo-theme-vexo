@@ -40,6 +40,9 @@
   <script src="<%- cdnroot %>/geopattern/1.2.3/js/geopattern.min.js"></script>
   <script src="<%- cdnroot %>/nprogress/0.2.0/nprogress<%= min %>js"></script>
 
+  <% if (page.jsxgraph) { %>
+  <link href="<%- cdnroot %>/jsxgraph/0.99.6/jsxgraph.css" rel="stylesheet">
+  <% } %>
   <% (page.scripts || []).forEach(src => {
     if (/\.css$/i.test(src)) { %>
   <link rel="stylesheet" href="<%= src %>">
