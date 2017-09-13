@@ -1,6 +1,6 @@
 <% let cdnroot = config.local ? '/_local' : 'http://cdn.bootcss.com', min = config.local ? '.' : '.min.'; %>
 <% if (!config.math || !/\$(\$|[^\(])[^\$]*(\\|\^|\{).+\$|\{% math %\}|\\\(|\\\[/.test(page.raw)) {}
-  else if (config.math.engine == 'mathjax' && position == 'head') { %>
+  else if ((page.math || config.math.engine) == 'mathjax' && position == 'head') { %>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     jax: ['input/TeX', 'output/HTML-CSS'],
@@ -40,9 +40,9 @@
   });
 </script>
 <script src="<%- cdnroot %>/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<% } else if (config.math.engine == 'katex' && position == 'head') { %>
+<% } else if ((page.math || config.math.engine) == 'katex' && position == 'head') { %>
   <link href="<%- cdnroot %>/KaTeX/0.7.1/katex<%= min %>css" rel="stylesheet">
-<% } else if (config.math.engine == 'katex' && position == 'script') { %>
+<% } else if ((page.math || config.math.engine) == 'katex' && position == 'script') { %>
   <script src="<%- cdnroot %>/KaTeX/0.7.1/contrib/auto-render.min.js"></script>
   <script src="<%- cdnroot %>/KaTeX/0.7.1/katex.min.js"></script>
   <script>renderMathInElement($('.app-body')[0]);</script>
