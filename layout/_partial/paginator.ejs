@@ -4,6 +4,7 @@
     <span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
     <%= page.prev && page.prev.title %>
   </a>
+  <a href="<%- url_for('archives') %>"><i class="fa fa-archive" aria-hidden="true"></i></a>
   <a <%- page.next ? '' : 'class="unvisible"' %> href="<%- page.next && url_for(page.next.path) %>">
     <%= page.next && page.next.title %>
     <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
