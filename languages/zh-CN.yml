@@ -7,6 +7,7 @@ categories_page: 分类检索
 tag_page: "标签检索: %s"
 category_page: "分类检索: %s"
 archives_page: 文章归档
+catalog: 文章目录
 projects_page: 开源项目
 share_qrcode: 扫描二维码，分享此文章
 search_placeholder: 搜索...

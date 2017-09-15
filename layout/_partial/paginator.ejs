@@ -1,10 +1,20 @@
-<% if (page.prev || page.next) { %>
+<% if (page.prev || page.next) {
+  var index = 0
+  site.posts.toArray().sort((a, b) => b.date - a.date).forEach((p, i) => {
+    if (p.source === page.source) {
+      index = i
+    }
+  })
+  index = Math.floor(index / (config.per_page || 10))
+  p = (config.index_generator || {}).path
+  index = '/' + (p ? p + '/' : '') + (index ? 'page/' + (index + 1) : '')
+%>
 <div class="guide-pager">
   <a <%- page.prev ? '' : 'class="unvisible"' %> href="<%- page.prev && url_for(page.prev.path) %>">
     <span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
     <%= page.prev && page.prev.title %>
   </a>
-  <a href="<%- url_for('archives') %>"><i class="fa fa-archive" aria-hidden="true"></i></a>
+  <a href="<%- index %>" title="<%= __('catalog') %>"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
   <a <%- page.next ? '' : 'class="unvisible"' %> href="<%- page.next && url_for(page.next.path) %>">
     <%= page.next && page.next.title %>
     <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
