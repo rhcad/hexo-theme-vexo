@@ -3,6 +3,7 @@
   <% if (page.show_date !== false) { %>
   <p class="post-date">
     <span><%- date(page.date, "LL") %></span>
+    <span class="visit-info"><i class="fa fa-eye"></i> <span id="visit-count"></span><span>人阅读</span></span>
     <%- partial('_partial/category', { categories: page.categories }) %>
   </p>
   <% } %>

@@ -6,6 +6,24 @@
   <p class="post-date"><%- page.description || config.description || __('description') %></p>
 </div>
 <% } %>
+<script>
+  window.addFileRecord = function(title) {
+    <% if (config.add_visit) { %>
+    $.ajax({
+      type: 'get',
+      url: '<%- config.add_file %>?url=<%- page.path.replace('index.html', '') %>&readonly=<%= !!config.local %>',
+      success: function(data) {
+        data = data && /\d+,\d+/.test(data) && data.split(',')
+        if (data) {
+          (document.getElementById('visit-count') || {}).innerHTML = data[0];
+          (document.getElementById('file-count') || {}).innerHTML = data[1];
+          $('.visit-info').show()
+        }
+      }
+    })
+    <% } %>
+  }
+</script>
 <main class="app-body tool-app<%= page.full_page ? ' full-page' : ''%>">
   <%- partial('_partial/geogebra', {type: 'head'}) %>
   <div id="content">

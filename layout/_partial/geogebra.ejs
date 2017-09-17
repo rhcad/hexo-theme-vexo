@@ -2,8 +2,8 @@
 if (page.ggb === true) page.ggb = 'web';
 if (!page.ggb || ['web', 'web3d', 'webSimple'].indexOf(page.ggb) < 0) {}
 else if (type === 'head') { %>
-  <script src="<%- config.local ? '/_local/GeoGebra/deployggb.js' : ggb.deployggb || 'https://cdn.geogebra.org/apps/deployggb.js' %>"></script>
-  <script>window.codebase = '<%- config.local ? '/_local/GeoGebra/HTML5/5.0/' : ggb.codebase %><%- page.ggb %>/'</script>
+  <script>window.codebase = '/ggb/<%- page.ggb %>/'</script>
+  <script src="/ggb/deployggb.js"></script>
   <%- js('js/ggb') %>
 <% } %>
 

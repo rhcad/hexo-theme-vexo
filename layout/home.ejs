@@ -13,15 +13,14 @@
           <p class="card-description"><%= item.description %></p>
           <div class="card-footer hidden">
             <span><i class="fa fa-user-o"></i><span class="user-count">0</span></span>
-            <span><i class="fa fa-file-o"></i><span class="file-count">0</span></span>
+            <span><i class="fa fa-file-o"></i><span class="file-count"><%= eval(item.count || 0) %></span></span>
           </div>
         </a>
       </section>
       <% }) %>
   </div>
-  <% } else { %>
-    <%- page.content %>
   <% } %>
+  <%- page.content %>
 </main>
 <script>
   $('.card-header').each(function() {

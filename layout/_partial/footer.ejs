@@ -59,6 +59,20 @@
     });
   });
   <% } %>
+  <% if (config.add_visit && /\/.+\/(index\.html)$/.test(page.path)) { %>
+  $.ajax({
+    type: 'get',
+    url: '<%- config.add_visit %>?url=<%- page.path.replace('/index.html', '/') %>&readonly=<%= !!config.local %>',
+    success: function(data) {
+      data = data && /\d+,\d+/.test(data) && data.split(',')
+      if (data) {
+        (document.getElementById('visit-count') || {}).innerHTML = data[0];
+        (document.getElementById('file-count') || {}).innerHTML = data[1];
+        $('.visit-info').show()
+      }
+    }
+  })
+  <% } %>
 </script>
 
 <!-- Baidu Tongji -->
