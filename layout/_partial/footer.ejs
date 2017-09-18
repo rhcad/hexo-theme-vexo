@@ -59,7 +59,7 @@
     });
   });
   <% } %>
-  <% if (config.add_visit && /\/.+\/(index\.html)$/.test(page.path)) { %>
+  <% if (config.add_visit && /\/.+\/(index\.html)?$/.test(page.path)) { %>
   $.ajax({
     type: 'get',
     url: '<%- config.add_visit %>?url=<%- page.path.replace('/index.html', '/') %>&readonly=<%= !!config.local %>',
