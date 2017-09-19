@@ -60,18 +60,32 @@
   });
   <% } %>
   <% if (config.add_visit && /\/.+\/(index\.html)?$/.test(page.path)) { %>
-  $.ajax({
-    type: 'get',
-    url: '<%- config.add_visit %>?url=<%- page.path.replace('/index.html', '/') %>&readonly=<%= !!config.local %>',
-    success: function(data) {
-      data = data && /\d+,\d+/.test(data) && data.split(',')
-      if (data) {
-        (document.getElementById('visit-count') || {}).innerHTML = data[0];
-        (document.getElementById('file-count') || {}).innerHTML = data[1];
-        $('.visit-info').show()
+  function add_visit(readonly) {
+    $.ajax({
+      type: 'get',
+      url: '<%- config.add_visit %>',
+      data: {
+        url: '<%- page.path.replace('/index.html', '/') %>',
+        readonly: readonly
+      },
+      success: function(data) {
+        var nums = data && /\d+,\d+/.test(data) && data.split(',')
+        if (nums) {
+          (document.getElementById('visit-count') || {}).innerHTML = nums[0];
+          (document.getElementById('file-count') || {}).innerHTML = nums[1];
+          $('.visit-info').show()
+        }
+        else if (!readonly) {
+          setTimeout(function() {
+            add_visit(true)
+          }, 500)
+        } else {
+          console.log(data)
+        }
       }
-    }
-  })
+    })
+  }
+  add_visit(<%= !!config.local %>)
   <% } %>
 </script>
 
